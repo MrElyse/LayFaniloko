@@ -596,35 +596,58 @@
   // Les sections apparaissent quand elles entrent dans l ecran. La classe est posee ici, pas
   // dans le HTML : sans JavaScript, ou si l appareil demande moins d animations, la page
   // s affiche entierement, tout de suite.
+  //
+  // On mesure soi-meme plutot que d observer : une apparition ratee laisserait le texte
+  // invisible pour toujours, et un simple calcul de position ne peut pas se taire.
   (function () {
-    var doux = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (doux || !('IntersectionObserver' in window)) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     var groupes = [
       '.chiffres div', '.titre', '.grille > *', '.duo > div', '.duo > img',
       '.etapes li', '.avis', '.atelier', '.ecrire > *', '.final > *',
     ];
-    var vus = new IntersectionObserver(function (entrees) {
-      entrees.forEach(function (e) {
-        if (!e.isIntersecting) return;
-        e.target.classList.add('vu');
-        vus.unobserve(e.target);
-      });
-    }, { rootMargin: '0px 0px -10% 0px', threshold: .06 });
-
+    var caches = [];
     groupes.forEach(function (selecteur) {
       // Le decalage se compte a l interieur de chaque groupe de freres, pour que les cartes
       // d une meme rangee arrivent l une apres l autre.
       var precedent = null, rang = 0;
       document.querySelectorAll(selecteur).forEach(function (el) {
-        if (el.closest('.entree')) return;         // l entree a sa propre animation
+        if (el.closest('.entree') || el.classList.contains('monte')) return;
         rang = (el.parentNode === precedent) ? rang + 1 : 0;
         precedent = el.parentNode;
         el.style.setProperty('--i', Math.min(rang, 5));
         el.classList.add('monte');
-        vus.observe(el);
+        caches.push(el);
       });
     });
+
+    var enCours = false;
+    function regarde() {
+      enCours = false;
+      var limite = (window.innerHeight || 0) * 0.92;
+      caches = caches.filter(function (el) {
+        if (el.getBoundingClientRect().top > limite) return true;
+        el.classList.add('vu');
+        return false;
+      });
+      if (!caches.length) retire();
+    }
+    function demande() { if (!enCours) { enCours = true; requestAnimationFrame(regarde); } }
+    function retire() {
+      window.removeEventListener('scroll', demande);
+      window.removeEventListener('resize', demande);
+    }
+
+    window.addEventListener('scroll', demande, { passive: true });
+    window.addEventListener('resize', demande);
+    regarde();
+    // Filet : si rien ne defile — page courte, defilement pris en charge ailleurs, erreur —
+    // tout redevient visible au bout de quelques secondes. Mieux vaut perdre l effet que le texte.
+    setTimeout(function () {
+      caches.forEach(function (el) { el.classList.add('vu'); });
+      caches = [];
+      retire();
+    }, 6000);
   })();
 </script>
 </body>
