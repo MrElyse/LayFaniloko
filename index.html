@@ -43,6 +43,49 @@
   p { margin: 0; }
   a { color: inherit; }
   .enveloppe { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
+  /* La barre colle en haut : les ancres doivent s arreter en dessous, pas dessous elle. */
+  section[id] { scroll-margin-top: 72px; }
+
+  /* ---------- la barre ---------- */
+  .barre {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(21,16,10,.74); backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(253,246,236,.10); color: var(--creme);
+  }
+  .barre .enveloppe { display: flex; align-items: center; gap: 16px; height: 62px; }
+  .barre .logo { display: flex; align-items: center; gap: 9px; text-decoration: none; margin-right: auto; }
+  .barre .logo svg { width: 30px; height: 30px; border-radius: 9px; background: #3B2A1A; padding: 1px; }
+  .barre .logo b { font-family: Fraunces, serif; font-size: .98rem; font-weight: 600; white-space: nowrap; }
+  .barre nav { display: none; gap: 24px; }
+  @media (min-width: 760px) { .barre nav { display: flex; } }
+  .barre nav a { text-decoration: none; font-size: .93rem; color: rgba(253,246,236,.72); transition: color .15s; }
+  .barre nav a:hover { color: var(--flamme); }
+  .barre .mini {
+    text-decoration: none; background: var(--flamme); color: #231709; font-weight: 600;
+    font-size: .9rem; padding: 8px 17px; border-radius: 999px; white-space: nowrap;
+  }
+
+  /* ---------- services, a propos ---------- */
+  .service { background: var(--carte); border: 1px solid var(--trait); border-radius: 20px;
+             padding: 26px 24px; box-shadow: var(--ombre); }
+  .service h3 { font-size: 1.1rem; margin-bottom: 8px; }
+  .service p { color: var(--doux); font-size: .96rem; }
+  .atelier {
+    background: linear-gradient(150deg, var(--nuit) 0%, var(--nuit2) 100%);
+    color: var(--creme); border-radius: 28px; padding: 54px 32px; text-align: center;
+  }
+  .atelier h2 { font-size: clamp(1.7rem, 4vw, 2.3rem); }
+  .atelier > p { margin: 14px auto 0; max-width: 34rem; color: rgba(253,246,236,.72); }
+  .atelier .grille { margin-top: 36px; text-align: left; }
+  .atelier .service { background: rgba(253,246,236,.06); border-color: rgba(253,246,236,.14);
+                      box-shadow: none; }
+  .atelier .service p { color: rgba(253,246,236,.68); }
+  .ecrire { display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+  .ecrire a { text-decoration: none; }
+  .ecrire .service:hover { border-color: var(--flamme); }
+  .ecrire .service span { display: block; color: var(--doux); font-size: .9rem; margin-top: 6px;
+                          word-break: break-word; }
 
   /* ---------- l'entree ---------- */
   .entree {
@@ -203,7 +246,31 @@
 </head>
 <body>
 
-<header class="entree">
+<div class="barre">
+  <div class="enveloppe">
+    <a class="logo" href="#haut">
+      <svg viewBox="0 0 108 108" aria-hidden="true">
+            <circle cx="54" cy="38" r="19" fill="#33F0B05A"/>
+            <path d="M54,17 C60,26 66,31 66,39 C66,48 60.6,54 54,54 C47.4,54 42,48 42,39 C42,32 47,28 50,21 C51,26 53,27 54,30 C54.5,26 54,21 54,17 Z" fill="#F0B05A"/>
+            <path d="M54,32 C57,37 59.5,39.5 59.5,43.5 C59.5,48 57,51 54,51 C51,51 48.5,48 48.5,43.5 C48.5,40 51,37.5 54,32 Z" fill="#FDF0D5"/>
+            <path d="M54,70 C47,64 38,62 27,63 L27,86 C38,85 47,87 54,92 Z" fill="#FDF6EC"/>
+            <path d="M54,70 C61,64 70,62 81,63 L81,86 C70,85 61,87 54,92 Z" fill="#F3E3CB"/>
+            <path d="M52.2,69 L55.8,69 L55.8,92 L52.2,92 Z" fill="#B07A3C"/>
+          </svg>
+      <b>'Lay faniloko</b>
+    </a>
+    <nav>
+      <a href="#fonctions">L'application</a>
+      <a href="#images">En images</a>
+      <a href="#atelier">Développement</a>
+      <a href="#apropos">À propos</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="mini" href="https://github.com/MrElyse/LayFaniloko/releases/latest/download/LayFaniloko.apk">Télécharger</a>
+  </div>
+</div>
+
+<header class="entree" id="haut">
   <div class="enveloppe">
     <div>
       <div class="marque">
@@ -259,7 +326,7 @@
   </div>
 </div>
 
-<section class="enveloppe">
+<section class="enveloppe" id="fonctions">
   <div class="titre">
     <h2>Tout ce qu'on cherche pendant le culte</h2>
     <p>Un verset qu'on ne retrouve plus, un cantique annoncé à l'instant, un accord à transposer :
@@ -356,7 +423,7 @@
   </div>
 </section>
 
-<section>
+<section id="images">
   <div class="enveloppe titre">
     <h2>L'application en images</h2>
     <p>En clair comme en sombre, selon le réglage du téléphone.</p>
@@ -406,6 +473,75 @@
     Télécharger pour Android
   </a>
   <p class="note">L'application prévient d'elle-même quand une version plus récente paraît.</p>
+</section>
+
+<section class="enveloppe" id="atelier">
+  <div class="atelier">
+    <h2>Besoin d'une application ou d'un site&nbsp;?</h2>
+    <p>'Lay faniloko a été conçue et développée de bout en bout — la base biblique, la recherche,
+       la musique, le partage entre téléphones. Le même travail est possible pour votre projet.</p>
+    <div class="grille">
+      <div class="service">
+        <h3>Applications Android</h3>
+        <p>De l'idée à la publication sur le Play Store : conception, développement, mises à jour.
+           Y compris les applications qui doivent marcher sans internet.</p>
+      </div>
+      <div class="service">
+        <h3>Sites web</h3>
+        <p>Site vitrine, page de présentation, boutique ou espace d'administration. Rapides,
+           lisibles au téléphone, faciles à tenir à jour.</p>
+      </div>
+      <div class="service">
+        <h3>Accompagnement</h3>
+        <p>Reprise d'un projet existant, correction de ce qui bloque, conseil technique, ou mise
+           en ligne de ce que vous avez déjà commencé.</p>
+      </div>
+    </div>
+    <p style="margin-top:34px"><a class="bouton" href="mailto:yasharelyse@gmail.com?subject=Projet%20d'application%20ou%20de%20site">Parlons de votre projet</a></p>
+  </div>
+</section>
+
+<section class="enveloppe" id="apropos">
+  <div class="titre">
+    <h2>À propos</h2>
+    <p>'Lay faniloko est née d'un besoin simple : avoir la Baiboly, le Fihirana et l'enseignement
+       au même endroit, sans dépendre du réseau ni d'un abonnement.</p>
+  </div>
+  <p style="max-width:40rem;color:var(--doux)">Elle est développée et tenue à jour par un seul
+     développeur, pour la Fiangonan'i Jesosy Mamonjy et pour qui veut s'en servir. Elle ne collecte
+     rien, n'affiche aucune publicité et ne demande aucun compte. Les corrections de paroles, les
+     cantiques manquants et les idées sont les bienvenus : ce sont eux qui la font avancer.</p>
+</section>
+
+<section class="enveloppe" id="contact">
+  <div class="titre">
+    <h2>Écrire, ou demander de l'aide</h2>
+    <p>Un cantique qui manque, une faute dans les paroles, un souci à l'installation, une question :
+       écrivez, on vous répondra.</p>
+  </div>
+  <div class="ecrire">
+    <a href="mailto:yasharelyse@gmail.com?subject=Besoin%20d'aide%20-%20'Lay%20faniloko">
+      <div class="service">
+        <h3>Besoin d'aide</h3>
+        <p>Dites ce que vous faisiez au moment du souci, et sur quel téléphone.
+           <span>yasharelyse@gmail.com</span></p>
+      </div>
+    </a>
+    <a href="mailto:yasharelyse@gmail.com?subject=Correction%20-%20'Lay%20faniloko">
+      <div class="service">
+        <h3>Signaler une erreur</h3>
+        <p>Une faute dans un verset ou dans un cantique, un numéro qui ne correspond pas.
+           <span>yasharelyse@gmail.com</span></p>
+      </div>
+    </a>
+    <a href="https://github.com/MrElyse/LayFaniloko/issues">
+      <div class="service">
+        <h3>Sur GitHub</h3>
+        <p>Pour ceux qui préfèrent : ouvrez une issue, elle sera lue.
+           <span>github.com/MrElyse/LayFaniloko</span></p>
+      </div>
+    </a>
+  </div>
 </section>
 
 <footer>
