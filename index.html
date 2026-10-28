@@ -96,15 +96,17 @@
   }
 
   /* ---------- les telephones ---------- */
-  .telephones { position: relative; height: 430px; display: none; }
-  @media (min-width: 880px) { .telephones { display: block; } }
+  .telephones { display: none; }
+  @media (min-width: 880px) {
+    .telephones { display: flex; align-items: center; justify-content: center; }
+  }
   .telephones img {
-    position: absolute; width: 208px; border-radius: 26px; display: block;
+    width: clamp(146px, 17vw, 204px); border-radius: 26px; display: block; flex: 0 0 auto;
     border: 5px solid #0d0906; box-shadow: 0 28px 64px rgba(0,0,0,.52);
   }
-  .tel-a { left: 4%;  top: 44px; transform: rotate(-7deg); z-index: 1; }
-  .tel-b { left: 33%; top: 0;    z-index: 3; }
-  .tel-c { left: 62%; top: 44px; transform: rotate(7deg);  z-index: 2; }
+  .tel-a { transform: rotate(-7deg) translateY(26px); margin-right: -26px; z-index: 1; }
+  .tel-b { z-index: 3; }
+  .tel-c { transform: rotate(7deg) translateY(26px);  margin-left: -26px;  z-index: 2; }
   .tel-seul { margin: 8px auto 0; display: block; width: min(240px, 62vw); border-radius: 26px;
               border: 5px solid #0d0906; box-shadow: 0 24px 56px rgba(0,0,0,.5); }
   @media (min-width: 880px) { .tel-seul { display: none; } }
@@ -293,10 +295,10 @@
 <section class="enveloppe">
   <div class="duo">
     <div>
-      <h2>Deux versions sous les yeux</h2>
+      <h2>Deux versions à la fois</h2>
       <p>Un mot qui surprend dans la traduction malgache, une tournure plus claire ailleurs :
-         affichez deux versions l'une à côté de l'autre et la comparaison se fait d'un regard,
-         sans quitter le chapitre.</p>
+         la seconde version se glisse sous chaque verset, en plus petit. La comparaison se fait
+         d'un regard, sans quitter le chapitre.</p>
       <ul>
         <li>Les quatre versions sont dans l'application, rien à télécharger</li>
         <li>L'audio suit la lecture quand l'enregistrement existe</li>
