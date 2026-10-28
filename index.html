@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>'Lay faniloko</title>
+<style>
+  :root { --fond: #f7f2ea; --texte: #2e2419; --doux: #6b5c49; --accent: #7a4a1d;
+          --carte: #efe4d3; --trait: #e2d7c6; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --fond: #1d1812; --texte: #efe6da; --doux: #b5a692;
+      --accent: #d7a96a; --carte: #2a2219; --trait: #3a3026; }
+  }
+  body { background: var(--fond); color: var(--texte); margin: 0;
+         font-family: Georgia, "Times New Roman", serif; line-height: 1.7; }
+  main { max-width: 42rem; margin: 0 auto; padding: 3rem 16px 4rem; }
+  h1 { font-size: 2.1rem; margin-bottom: .2rem; }
+  h2 { font-size: 1.2rem; margin-top: 2.4rem; border-bottom: 1px solid var(--trait);
+       padding-bottom: .3rem; }
+  p.sous { color: var(--doux); margin-top: 0; font-size: 1.05rem; }
+  a { color: var(--accent); }
+  .bouton { display: inline-block; background: var(--accent); color: #fff; text-decoration: none;
+            padding: .9rem 1.6rem; border-radius: 999px; font-size: 1.05rem; margin-top: .4rem; }
+  .carte { background: var(--carte); border-radius: 16px; padding: 1.2rem 1.4rem; margin-top: 1rem; }
+  ul { padding-left: 1.2rem; }
+  li { margin: .5rem 0; }
+  ol li { margin: .7rem 0; }
+  footer { margin-top: 3rem; color: var(--doux); font-size: .92rem; }
+</style>
+</head>
+<body>
+<main>
+  <h1>'Lay faniloko</h1>
+  <p class="sous">La Baiboly, le Fihirana et l'enseignement, dans un seul téléphone.
+     Gratuite, sans publicité, et sans internet pour lire.</p>
+
+  <p><a class="bouton" id="telecharger" href="#">Télécharger l'application</a></p>
+  <p style="color:var(--doux);font-size:.92rem">Version d'essai, en attendant le Play Store.</p>
+
+  <h2>Installer</h2>
+  <ol>
+    <li>Appuyez sur <strong>Télécharger</strong> ci-dessus, puis ouvrez le fichier une fois
+        descendu.</li>
+    <li>Android demandera l'autorisation d'installer depuis cette source : acceptez. C'est
+        normal pour une application qui ne vient pas encore du Play Store.</li>
+    <li>Ouvrez l'application. La Bible et les cantiques sont déjà dedans.</li>
+  </ol>
+
+  <div class="carte">
+    <strong>À savoir</strong>
+    <p style="margin:.5rem 0 0">Quand l'application arrivera sur le Play Store, il faudra
+       <strong>désinstaller celle-ci d'abord</strong> : les deux ne portent pas la même
+       signature. Vos cantiques et vos enregistrements restent sur le téléphone, mais vos notes
+       et votre progression seront effacées — c'est une version d'essai.</p>
+  </div>
+
+  <h2>Ce qu'elle contient</h2>
+  <ul>
+    <li>La Bible en quatre versions, avec comparaison de deux versions côte à côte</li>
+    <li>Recherche rapide par référence, et recherche par les mots dont on se souvient</li>
+    <li>Fihirana Jesosy Mamonjy, FFPM, Tononkira, Noely 2024-2025-2026</li>
+    <li>Grille d'accords, transposition, métronome et accompagnement au piano</li>
+    <li>Partage des enregistrements d'un téléphone à l'autre, par wifi, sans internet</li>
+    <li>Suivi de lecture, versets enregistrés, notes et plan de lecture</li>
+  </ul>
+
+  <h2>Signaler un problème</h2>
+  <p>Cette version est à l'essai. Si quelque chose ne va pas, écrivez-nous en disant ce que
+     vous faisiez : <a href="mailto:yasharelyse@gmail.com">yasharelyse@gmail.com</a></p>
+
+  <footer>
+    <a href="confidentialite.html">Politique de confidentialité</a> ·
+    <a href="conditions.html">Conditions d'utilisation</a>
+  </footer>
+</main>
+
+<script>
+  // Le lien de telechargement se deduit de l'adresse de la page : sur GitHub Pages,
+  // « nom.github.io/layfaniloko » correspond au depot « nom/layfaniloko ».
+  (function () {
+    var lien = document.getElementById('telecharger');
+    var nom = location.hostname.split('.')[0];
+    var depot = location.pathname.split('/')[1] || 'layfaniloko';
+    if (location.hostname.indexOf('github.io') > 0) {
+      lien.href = 'https://github.com/' + nom + '/' + depot + '/releases/latest';
+    } else {
+      lien.textContent = 'Lien de téléchargement bientôt disponible';
+    }
+  })();
+</script>
+</body>
+</html>
