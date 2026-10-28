@@ -183,6 +183,15 @@
 
   /* ---------- le pied ---------- */
   .final { text-align: center; padding: 86px 0; }
+  .citation {
+    margin: 20px auto 0; max-width: 32rem; font-family: Fraunces, serif; font-style: italic;
+    font-size: 1.05rem; color: var(--doux);
+  }
+  .citation cite { display: block; margin-top: 8px; font-style: normal; font-size: .86rem;
+                   letter-spacing: .04em; text-transform: uppercase; color: var(--braise); }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .citation cite { color: var(--flamme); } }
+  :root[data-theme="dark"] .citation cite { color: var(--flamme); }
+  .note { margin-top: 18px; font-size: .9rem; color: var(--doux); }
   .final h2 { font-size: clamp(1.9rem, 5vw, 2.7rem); }
   .final p { margin-top: 14px; color: var(--doux); }
   .final .bouton { margin-top: 30px; }
@@ -382,14 +391,21 @@
 </section>
 
 <section class="final enveloppe">
-  <h2>Tongasoa</h2>
-  <p>L'application prévient d'elle-même quand une version plus récente paraît.</p>
+  <h2>Natao maimaimpoana</h2>
+  <blockquote class="citation">
+    « Ary aoka ho avy izay mangetaheta ; ary izay mety, aoka izy hisotro maimaimpoana
+      amin'ny ranon'aina. »
+    <cite>Apokalypsy 22:17</cite>
+  </blockquote>
+  <p class="note">Ce qui se reçoit gratuitement se donne gratuitement : ni prix, ni publicité,
+     ni abonnement, ni compte à créer.</p>
   <a class="bouton" href="https://github.com/MrElyse/LayFaniloko/releases/latest/download/LayFaniloko.apk">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 19h16"/>
     </svg>
     Télécharger pour Android
   </a>
+  <p class="note">L'application prévient d'elle-même quand une version plus récente paraît.</p>
 </section>
 
 <footer>
