@@ -42,7 +42,7 @@
   h1, h2, h3 { font-family: Fraunces, Georgia, serif; font-weight: 600; line-height: 1.15; margin: 0; }
   p { margin: 0; }
   a { color: inherit; }
-  .enveloppe { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
+  .enveloppe { max-width: 1120px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 40px); }
   /* La barre colle en haut : les ancres doivent s arreter en dessous, pas dessous elle. */
   section[id] { scroll-margin-top: 72px; }
 
@@ -67,21 +67,22 @@
   }
 
   /* ---------- services, a propos ---------- */
-  .service { background: var(--carte); border: 1px solid var(--trait); border-radius: 20px;
-             padding: 26px 24px; box-shadow: var(--ombre); }
+  .service { background: var(--carte); border: 1px solid var(--trait); border-radius: 24px;
+             padding: 34px 32px; box-shadow: var(--ombre); }
   .service h3 { font-size: 1.1rem; margin-bottom: 8px; }
   .service p { color: var(--doux); font-size: .96rem; }
   .atelier {
     background: linear-gradient(150deg, var(--nuit) 0%, var(--nuit2) 100%);
-    color: var(--creme); border-radius: 28px; padding: 54px 32px; text-align: center;
+    color: var(--creme); border-radius: 32px; text-align: center;
+    padding: clamp(56px, 8vw, 96px) clamp(24px, 5vw, 64px);
   }
   .atelier h2 { font-size: clamp(1.7rem, 4vw, 2.3rem); }
   .atelier > p { margin: 14px auto 0; max-width: 34rem; color: rgba(253,246,236,.72); }
-  .atelier .grille { margin-top: 36px; text-align: left; }
+  .atelier .grille { margin-top: 52px; text-align: left; }
   .atelier .service { background: rgba(253,246,236,.06); border-color: rgba(253,246,236,.14);
                       box-shadow: none; }
   .atelier .service p { color: rgba(253,246,236,.68); }
-  .ecrire { display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+  .ecrire { display: grid; gap: 24px; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
   .ecrire a { text-decoration: none; }
   .ecrire .service:hover { border-color: var(--flamme); }
   .ecrire .service span { display: block; color: var(--doux); font-size: .9rem; margin-top: 6px;
@@ -101,12 +102,12 @@
   }
   .entree .enveloppe {
     position: relative; z-index: 1; display: grid; gap: 40px;
-    padding-top: 56px; padding-bottom: 96px;
+    padding-top: 64px; padding-bottom: 120px;
   }
   @media (min-width: 880px) {
     .entree .enveloppe {
-      grid-template-columns: 1fr 1fr; align-items: center;
-      padding-top: 88px; padding-bottom: 130px;
+      grid-template-columns: 1fr 1fr; align-items: center; gap: 56px;
+      padding-top: 120px; padding-bottom: 168px;
     }
   }
 
@@ -114,17 +115,17 @@
   .marque svg { width: 44px; height: 44px; border-radius: 13px; background: #3B2A1A; padding: 2px; }
   .marque b { font-family: Fraunces, serif; font-size: 1.12rem; font-weight: 600; letter-spacing: .01em; }
 
-  .entree h1 { font-size: clamp(2.5rem, 7.5vw, 4rem); font-weight: 800; letter-spacing: -.02em; }
+  .entree h1 { font-size: clamp(2.5rem, 7.5vw, 4.1rem); font-weight: 800; letter-spacing: -.025em; line-height: 1.08; }
   .entree h1 em { font-style: normal; color: var(--flamme); }
-  .promesse { margin-top: 18px; font-size: 1.12rem; color: rgba(253,246,236,.74); max-width: 30rem; }
+  .promesse { margin-top: 24px; font-size: 1.14rem; line-height: 1.75; color: rgba(253,246,236,.74); max-width: 30rem; }
 
   .verset {
-    margin-top: 26px; padding-left: 16px; border-left: 2px solid rgba(240,176,90,.45);
+    margin-top: 34px; padding-left: 20px; border-left: 2px solid rgba(240,176,90,.45);
     font-family: Fraunces, serif; font-style: italic; font-size: 1rem;
     color: rgba(253,246,236,.62);
   }
 
-  .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 18px; margin-top: 34px; }
+  .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 22px; margin-top: 42px; }
   .bouton {
     display: inline-flex; align-items: center; gap: 10px; text-decoration: none;
     background: var(--flamme); color: #231709; font-weight: 600; font-size: 1.05rem;
@@ -135,7 +136,7 @@
   .bouton svg { width: 20px; height: 20px; }
   .menu { font-size: .92rem; color: rgba(253,246,236,.55); }
 
-  .jetons { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 26px; list-style: none; padding: 0; }
+  .jetons { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 34px; list-style: none; padding: 0; }
   .jetons li {
     font-size: .86rem; padding: 6px 13px; border-radius: 999px;
     border: 1px solid rgba(253,246,236,.18); color: rgba(253,246,236,.78);
@@ -164,44 +165,45 @@
     overflow: hidden; margin-top: -58px; position: relative; z-index: 2; box-shadow: var(--ombre);
   }
   @media (min-width: 720px) { .chiffres { grid-template-columns: repeat(4, 1fr); } }
-  .chiffres div { background: var(--carte); padding: 22px 16px; text-align: center; }
-  .chiffres b { display: block; font-family: Fraunces, serif; font-size: 1.7rem; font-weight: 600; }
-  .chiffres span { font-size: .84rem; color: var(--doux); }
+  .chiffres div { background: var(--carte); padding: 34px 20px; text-align: center; }
+  .chiffres b { display: block; font-family: Fraunces, serif; font-size: 2rem; font-weight: 600;
+                margin-bottom: 4px; letter-spacing: -.01em; }
+  .chiffres span { font-size: .85rem; color: var(--doux); letter-spacing: .01em; }
 
   /* ---------- les sections ---------- */
-  section { padding: 76px 0; }
-  .titre { max-width: 34rem; margin-bottom: 42px; }
-  .titre h2 { font-size: clamp(1.8rem, 4.2vw, 2.5rem); letter-spacing: -.015em; }
-  .titre p { margin-top: 12px; color: var(--doux); }
+  section { padding: clamp(78px, 11vw, 136px) 0; }
+  .titre { max-width: 36rem; margin-bottom: clamp(40px, 5vw, 64px); }
+  .titre h2 { font-size: clamp(1.9rem, 4.2vw, 2.7rem); letter-spacing: -.022em; }
+  .titre p { margin-top: 16px; color: var(--doux); font-size: 1.05rem; }
 
-  .grille { display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+  .grille { display: grid; gap: 24px; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); }
   .carte {
-    background: var(--carte); border: 1px solid var(--trait); border-radius: 20px;
-    padding: 26px 24px; box-shadow: var(--ombre);
+    background: var(--carte); border: 1px solid var(--trait); border-radius: 24px;
+    padding: 36px 32px; box-shadow: var(--ombre);
   }
   .carte .rond {
     width: 44px; height: 44px; border-radius: 13px; display: grid; place-items: center;
-    background: rgba(240,176,90,.16); color: var(--braise); margin-bottom: 16px;
+    background: rgba(240,176,90,.16); color: var(--braise); margin-bottom: 22px;
   }
   @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .carte .rond { color: var(--flamme); } }
   :root[data-theme="dark"] .carte .rond { color: var(--flamme); }
   .carte .rond svg { width: 23px; height: 23px; }
   .carte h3 { font-size: 1.12rem; }
-  .carte p { margin-top: 8px; color: var(--doux); font-size: .96rem; }
+  .carte p { margin-top: 10px; color: var(--doux); font-size: .97rem; line-height: 1.7; }
 
   /* ---------- deux colonnes ---------- */
-  .duo { display: grid; gap: 40px; align-items: center; }
-  @media (min-width: 880px) { .duo { grid-template-columns: 1fr 1fr; gap: 64px; } .duo.inverse > div:first-child { order: 2; } }
+  .duo { display: grid; gap: 48px; align-items: center; }
+  @media (min-width: 880px) { .duo { grid-template-columns: 1fr 1fr; gap: clamp(64px, 8vw, 110px); } .duo.inverse > div:first-child { order: 2; } }
   .duo img { width: min(260px, 70vw); border-radius: 26px; display: block; margin: 0 auto;
              border: 5px solid #0d0906; box-shadow: 0 20px 48px rgba(0,0,0,.28); }
   .duo h2 { font-size: clamp(1.6rem, 3.6vw, 2.1rem); }
-  .duo p { margin-top: 14px; color: var(--doux); }
-  .duo ul { margin: 18px 0 0; padding-left: 20px; color: var(--doux); }
-  .duo li { margin: 7px 0; }
+  .duo p { margin-top: 18px; color: var(--doux); line-height: 1.75; }
+  .duo ul { margin: 26px 0 0; padding-left: 20px; color: var(--doux); }
+  .duo li { margin: 11px 0; }
 
   /* ---------- la galerie ---------- */
   .galerie {
-    display: flex; gap: 16px; overflow-x: auto; padding: 4px 16px 20px;
+    display: flex; gap: 22px; overflow-x: auto; padding: 4px clamp(16px, 4vw, 40px) 24px;
     scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
   }
   .galerie img {
@@ -210,9 +212,9 @@
   }
 
   /* ---------- installer ---------- */
-  .etapes { counter-reset: n; display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); padding: 0; }
+  .etapes { counter-reset: n; display: grid; gap: 24px; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); padding: 0; }
   .etapes li { list-style: none; background: var(--carte); border: 1px solid var(--trait);
-               border-radius: 20px; padding: 24px; box-shadow: var(--ombre); }
+               border-radius: 24px; padding: 34px 32px; box-shadow: var(--ombre); }
   .etapes li::before {
     counter-increment: n; content: counter(n);
     display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%;
@@ -221,11 +223,11 @@
   .etapes strong { display: block; margin-bottom: 4px; }
   .etapes span { color: var(--doux); font-size: .95rem; }
 
-  .avis { margin-top: 26px; padding: 20px 22px; border-radius: 18px;
+  .avis { margin-top: 34px; padding: 26px 30px; border-radius: 22px; line-height: 1.75;
           background: rgba(240,176,90,.1); border: 1px solid rgba(240,176,90,.28); font-size: .96rem; }
 
   /* ---------- le pied ---------- */
-  .final { text-align: center; padding: 86px 0; }
+  .final { text-align: center; padding: clamp(90px, 12vw, 150px) 0; }
   .citation {
     margin: 20px auto 0; max-width: 32rem; font-family: Fraunces, serif; font-style: italic;
     font-size: 1.05rem; color: var(--doux);
@@ -238,7 +240,7 @@
   .final h2 { font-size: clamp(1.9rem, 5vw, 2.7rem); }
   .final p { margin-top: 14px; color: var(--doux); }
   .final .bouton { margin-top: 30px; }
-  footer { border-top: 1px solid var(--trait); padding: 34px 0 54px; color: var(--doux); font-size: .9rem; }
+  footer { border-top: 1px solid var(--trait); padding: 44px 0 64px; color: var(--doux); font-size: .9rem; }
   footer .enveloppe { display: flex; flex-wrap: wrap; gap: 10px 22px; justify-content: space-between; }
   footer a { text-decoration: none; }
   footer a:hover { text-decoration: underline; }
