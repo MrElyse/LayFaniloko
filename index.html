@@ -31,6 +31,9 @@
 
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
+  /* Les attributs width/height du HTML reservent la place pendant le chargement ; sans cette
+     ligne, la hauteur annoncee l emporte sur le rapport reel et les captures s allongent. */
+  img { max-width: 100%; height: auto; }
   body {
     margin: 0; background: var(--fond); color: var(--texte);
     font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
