@@ -9,7 +9,7 @@ l'enseignement, dans un seul téléphone. Gratuite, sans publicité, et sans int
 
 **→ [Page de téléchargement](https://mrelyse.github.io/LayFaniloko/)**
 
-Ou directement le fichier : [dernière version](https://github.com/MrElyse/LayFaniloko/releases/latest).
+Ou directement le fichier : [dernière version](https://github.com/MrElyse/LayFaniloko/releases/latest/download/LayFaniloko.apk).
 
 Ouvrez le fichier descendu, acceptez l'installation depuis cette source — c'est normal pour une
 application qui ne vient pas encore du Play Store — et c'est tout. La Bible et les cantiques sont

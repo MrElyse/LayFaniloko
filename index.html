@@ -4,89 +4,382 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>'Lay faniloko</title>
+<meta name="description" content="La Baiboly, le Fihirana et l'enseignement dans un seul téléphone. Gratuite, sans publicité, et sans internet pour lire.">
+<meta property="og:title" content="'Lay faniloko">
+<meta property="og:description" content="La Baiboly, le Fihirana et l'enseignement dans un seul téléphone.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root { --fond: #f7f2ea; --texte: #2e2419; --doux: #6b5c49; --accent: #7a4a1d;
-          --carte: #efe4d3; --trait: #e2d7c6; }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) { --fond: #1d1812; --texte: #efe6da; --doux: #b5a692;
-      --accent: #d7a96a; --carte: #2a2219; --trait: #3a3026; }
+  :root {
+    --flamme: #F0B05A;  --braise: #B07A3C;  --nuit: #241a10;  --nuit2: #150f09;
+    --creme: #FDF6EC;
+    --fond: #fbf6ee;  --texte: #241a10;  --doux: #6e5c46;  --carte: #ffffff;
+    --trait: rgba(36,26,16,.10);  --ombre: 0 2px 4px rgba(36,26,16,.04), 0 12px 32px rgba(36,26,16,.08);
   }
-  body { background: var(--fond); color: var(--texte); margin: 0;
-         font-family: Georgia, "Times New Roman", serif; line-height: 1.7; }
-  main { max-width: 42rem; margin: 0 auto; padding: 3rem 16px 4rem; }
-  h1 { font-size: 2.1rem; margin-bottom: .2rem; }
-  h2 { font-size: 1.2rem; margin-top: 2.4rem; border-bottom: 1px solid var(--trait);
-       padding-bottom: .3rem; }
-  p.sous { color: var(--doux); margin-top: 0; font-size: 1.05rem; }
-  a { color: var(--accent); }
-  .bouton { display: inline-block; background: var(--accent); color: #fff; text-decoration: none;
-            padding: .9rem 1.6rem; border-radius: 999px; font-size: 1.05rem; margin-top: .4rem; }
-  .carte { background: var(--carte); border-radius: 16px; padding: 1.2rem 1.4rem; margin-top: 1rem; }
-  ul { padding-left: 1.2rem; }
-  li { margin: .5rem 0; }
-  ol li { margin: .7rem 0; }
-  footer { margin-top: 3rem; color: var(--doux); font-size: .92rem; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --fond: #15100a;  --texte: #f3e9dc;  --doux: #a8977f;  --carte: #1f1810;
+      --trait: rgba(243,233,220,.12);  --ombre: 0 2px 4px rgba(0,0,0,.3), 0 12px 32px rgba(0,0,0,.4);
+    }
+  }
+  :root[data-theme="dark"] {
+    --fond: #15100a;  --texte: #f3e9dc;  --doux: #a8977f;  --carte: #1f1810;
+    --trait: rgba(243,233,220,.12);  --ombre: 0 2px 4px rgba(0,0,0,.3), 0 12px 32px rgba(0,0,0,.4);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--fond); color: var(--texte);
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: 17px; line-height: 1.65; -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { font-family: Fraunces, Georgia, serif; font-weight: 600; line-height: 1.15; margin: 0; }
+  p { margin: 0; }
+  a { color: inherit; }
+  .enveloppe { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
+
+  /* ---------- l'entree ---------- */
+  .entree {
+    position: relative; overflow: hidden; color: var(--creme);
+    background:
+      radial-gradient(900px 520px at 78% -8%, rgba(240,176,90,.26), transparent 62%),
+      radial-gradient(640px 420px at 6% 104%, rgba(176,122,60,.22), transparent 60%),
+      linear-gradient(168deg, var(--nuit) 0%, var(--nuit2) 100%);
+  }
+  .entree::after {
+    content: ""; position: absolute; inset: auto 0 -1px 0; height: 120px;
+    background: linear-gradient(to bottom, transparent, var(--fond));
+  }
+  .entree .enveloppe {
+    position: relative; z-index: 1; display: grid; gap: 40px;
+    padding-top: 56px; padding-bottom: 96px;
+  }
+  @media (min-width: 880px) {
+    .entree .enveloppe {
+      grid-template-columns: 1fr 1fr; align-items: center;
+      padding-top: 88px; padding-bottom: 130px;
+    }
+  }
+
+  .marque { display: flex; align-items: center; gap: 12px; margin-bottom: 26px; }
+  .marque svg { width: 44px; height: 44px; border-radius: 13px; background: #3B2A1A; padding: 2px; }
+  .marque b { font-family: Fraunces, serif; font-size: 1.12rem; font-weight: 600; letter-spacing: .01em; }
+
+  .entree h1 { font-size: clamp(2.5rem, 7.5vw, 4rem); font-weight: 800; letter-spacing: -.02em; }
+  .entree h1 em { font-style: normal; color: var(--flamme); }
+  .promesse { margin-top: 18px; font-size: 1.12rem; color: rgba(253,246,236,.74); max-width: 30rem; }
+
+  .verset {
+    margin-top: 26px; padding-left: 16px; border-left: 2px solid rgba(240,176,90,.45);
+    font-family: Fraunces, serif; font-style: italic; font-size: 1rem;
+    color: rgba(253,246,236,.62);
+  }
+
+  .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 18px; margin-top: 34px; }
+  .bouton {
+    display: inline-flex; align-items: center; gap: 10px; text-decoration: none;
+    background: var(--flamme); color: #231709; font-weight: 600; font-size: 1.05rem;
+    padding: 15px 28px; border-radius: 999px; border: 0;
+    box-shadow: 0 8px 28px rgba(240,176,90,.34); transition: transform .18s, box-shadow .18s;
+  }
+  .bouton:hover { transform: translateY(-2px); box-shadow: 0 12px 34px rgba(240,176,90,.44); }
+  .bouton svg { width: 20px; height: 20px; }
+  .menu { font-size: .92rem; color: rgba(253,246,236,.55); }
+
+  .jetons { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 26px; list-style: none; padding: 0; }
+  .jetons li {
+    font-size: .86rem; padding: 6px 13px; border-radius: 999px;
+    border: 1px solid rgba(253,246,236,.18); color: rgba(253,246,236,.78);
+  }
+
+  /* ---------- les telephones ---------- */
+  .telephones { position: relative; height: 430px; display: none; }
+  @media (min-width: 880px) { .telephones { display: block; } }
+  .telephones img {
+    position: absolute; width: 208px; border-radius: 26px; display: block;
+    border: 5px solid #0d0906; box-shadow: 0 28px 64px rgba(0,0,0,.52);
+  }
+  .tel-a { left: 4%;  top: 44px; transform: rotate(-7deg); z-index: 1; }
+  .tel-b { left: 33%; top: 0;    z-index: 3; }
+  .tel-c { left: 62%; top: 44px; transform: rotate(7deg);  z-index: 2; }
+  .tel-seul { margin: 8px auto 0; display: block; width: min(240px, 62vw); border-radius: 26px;
+              border: 5px solid #0d0906; box-shadow: 0 24px 56px rgba(0,0,0,.5); }
+  @media (min-width: 880px) { .tel-seul { display: none; } }
+
+  /* ---------- les chiffres ---------- */
+  .chiffres {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px;
+    background: var(--trait); border: 1px solid var(--trait); border-radius: 20px;
+    overflow: hidden; margin-top: -58px; position: relative; z-index: 2; box-shadow: var(--ombre);
+  }
+  @media (min-width: 720px) { .chiffres { grid-template-columns: repeat(4, 1fr); } }
+  .chiffres div { background: var(--carte); padding: 22px 16px; text-align: center; }
+  .chiffres b { display: block; font-family: Fraunces, serif; font-size: 1.7rem; font-weight: 600; }
+  .chiffres span { font-size: .84rem; color: var(--doux); }
+
+  /* ---------- les sections ---------- */
+  section { padding: 76px 0; }
+  .titre { max-width: 34rem; margin-bottom: 42px; }
+  .titre h2 { font-size: clamp(1.8rem, 4.2vw, 2.5rem); letter-spacing: -.015em; }
+  .titre p { margin-top: 12px; color: var(--doux); }
+
+  .grille { display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+  .carte {
+    background: var(--carte); border: 1px solid var(--trait); border-radius: 20px;
+    padding: 26px 24px; box-shadow: var(--ombre);
+  }
+  .carte .rond {
+    width: 44px; height: 44px; border-radius: 13px; display: grid; place-items: center;
+    background: rgba(240,176,90,.16); color: var(--braise); margin-bottom: 16px;
+  }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .carte .rond { color: var(--flamme); } }
+  :root[data-theme="dark"] .carte .rond { color: var(--flamme); }
+  .carte .rond svg { width: 23px; height: 23px; }
+  .carte h3 { font-size: 1.12rem; }
+  .carte p { margin-top: 8px; color: var(--doux); font-size: .96rem; }
+
+  /* ---------- deux colonnes ---------- */
+  .duo { display: grid; gap: 40px; align-items: center; }
+  @media (min-width: 880px) { .duo { grid-template-columns: 1fr 1fr; gap: 64px; } .duo.inverse > div:first-child { order: 2; } }
+  .duo img { width: min(260px, 70vw); border-radius: 26px; display: block; margin: 0 auto;
+             border: 5px solid #0d0906; box-shadow: 0 20px 48px rgba(0,0,0,.28); }
+  .duo h2 { font-size: clamp(1.6rem, 3.6vw, 2.1rem); }
+  .duo p { margin-top: 14px; color: var(--doux); }
+  .duo ul { margin: 18px 0 0; padding-left: 20px; color: var(--doux); }
+  .duo li { margin: 7px 0; }
+
+  /* ---------- la galerie ---------- */
+  .galerie {
+    display: flex; gap: 16px; overflow-x: auto; padding: 4px 16px 20px;
+    scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+  }
+  .galerie img {
+    flex: 0 0 auto; width: 212px; border-radius: 22px; scroll-snap-align: center;
+    border: 4px solid #0d0906; box-shadow: 0 16px 40px rgba(0,0,0,.26);
+  }
+
+  /* ---------- installer ---------- */
+  .etapes { counter-reset: n; display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); padding: 0; }
+  .etapes li { list-style: none; background: var(--carte); border: 1px solid var(--trait);
+               border-radius: 20px; padding: 24px; box-shadow: var(--ombre); }
+  .etapes li::before {
+    counter-increment: n; content: counter(n);
+    display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%;
+    background: var(--flamme); color: #231709; font-weight: 600; margin-bottom: 14px;
+  }
+  .etapes strong { display: block; margin-bottom: 4px; }
+  .etapes span { color: var(--doux); font-size: .95rem; }
+
+  .avis { margin-top: 26px; padding: 20px 22px; border-radius: 18px;
+          background: rgba(240,176,90,.1); border: 1px solid rgba(240,176,90,.28); font-size: .96rem; }
+
+  /* ---------- le pied ---------- */
+  .final { text-align: center; padding: 86px 0; }
+  .final h2 { font-size: clamp(1.9rem, 5vw, 2.7rem); }
+  .final p { margin-top: 14px; color: var(--doux); }
+  .final .bouton { margin-top: 30px; }
+  footer { border-top: 1px solid var(--trait); padding: 34px 0 54px; color: var(--doux); font-size: .9rem; }
+  footer .enveloppe { display: flex; flex-wrap: wrap; gap: 10px 22px; justify-content: space-between; }
+  footer a { text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
 </style>
 </head>
 <body>
-<main>
-  <h1>'Lay faniloko</h1>
-  <p class="sous">La Baiboly, le Fihirana et l'enseignement, dans un seul téléphone.
-     Gratuite, sans publicité, et sans internet pour lire.</p>
 
-  <p><a class="bouton" id="telecharger" href="#">Télécharger l'application</a></p>
-  <p style="color:var(--doux);font-size:.92rem">Version d'essai, en attendant le Play Store.</p>
+<header class="entree">
+  <div class="enveloppe">
+    <div>
+      <div class="marque">
+        <svg viewBox="0 0 108 108" aria-hidden="true">
+          <circle cx="54" cy="38" r="19" fill="#33F0B05A"/>
+          <path d="M54,17 C60,26 66,31 66,39 C66,48 60.6,54 54,54 C47.4,54 42,48 42,39 C42,32 47,28 50,21 C51,26 53,27 54,30 C54.5,26 54,21 54,17 Z" fill="#F0B05A"/>
+          <path d="M54,32 C57,37 59.5,39.5 59.5,43.5 C59.5,48 57,51 54,51 C51,51 48.5,48 48.5,43.5 C48.5,40 51,37.5 54,32 Z" fill="#FDF0D5"/>
+          <path d="M54,70 C47,64 38,62 27,63 L27,86 C38,85 47,87 54,92 Z" fill="#FDF6EC"/>
+          <path d="M54,70 C61,64 70,62 81,63 L81,86 C70,85 61,87 54,92 Z" fill="#F3E3CB"/>
+          <path d="M52.2,69 L55.8,69 L55.8,92 L52.2,92 Z" fill="#B07A3C"/>
+        </svg>
+        <b>'Lay faniloko</b>
+      </div>
 
-  <h2>Installer</h2>
-  <ol>
-    <li>Appuyez sur <strong>Télécharger</strong> ci-dessus, puis ouvrez le fichier une fois
-        descendu.</li>
-    <li>Android demandera l'autorisation d'installer depuis cette source : acceptez. C'est
-        normal pour une application qui ne vient pas encore du Play Store.</li>
-    <li>Ouvrez l'application. La Bible et les cantiques sont déjà dedans.</li>
-  </ol>
+      <h1>La Parole,<br>le chant,<br><em>dans la poche.</em></h1>
+      <p class="promesse">La Baiboly en quatre versions, le Fihirana au complet et l'enseignement,
+         réunis dans une seule application. Rien à payer, aucune publicité, et pas besoin
+         d'internet pour lire.</p>
 
-  <div class="carte">
-    <strong>À savoir</strong>
-    <p style="margin:.5rem 0 0">Quand l'application arrivera sur le Play Store, il faudra
-       <strong>désinstaller celle-ci d'abord</strong> : les deux ne portent pas la même
-       signature. Vos cantiques et vos enregistrements restent sur le téléphone, mais vos notes
-       et votre progression seront effacées — c'est une version d'essai.</p>
+      <p class="verset">« 'Lay faniloko ho an'ny tongotro ny teninao,<br>
+         sady fanazavana ho amin'ny lalako. » — Salamo 119:105</p>
+
+      <div class="actions">
+        <a class="bouton" href="https://github.com/MrElyse/LayFaniloko/releases/latest/download/LayFaniloko.apk">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 19h16"/>
+          </svg>
+          Télécharger
+        </a>
+        <span class="menu">26 Mo · Android 7 et plus</span>
+      </div>
+
+      <ul class="jetons">
+        <li>Gratuite</li><li>Sans publicité</li><li>Hors ligne</li><li>Sans compte</li>
+      </ul>
+    </div>
+
+    <div class="telephones">
+      <img class="tel-a" src="captures/05-bible.webp" alt="La lecture d'un chapitre de la Bible" loading="lazy" width="369" height="820">
+      <img class="tel-b" src="captures/01-accueil.webp" alt="L'accueil de l'application" width="369" height="820">
+      <img class="tel-c" src="captures/04-hira.webp" alt="La liste des cantiques" loading="lazy" width="369" height="820">
+    </div>
+    <img class="tel-seul" src="captures/01-accueil.webp" alt="L'accueil de l'application" width="369" height="820">
+  </div>
+</header>
+
+<div class="enveloppe">
+  <div class="chiffres">
+    <div><b>4</b><span>versions de la Baiboly</span></div>
+    <div><b>66</b><span>livres, hors ligne</span></div>
+    <div><b>9 700+</b><span>cantiques</span></div>
+    <div><b>0</b><span>publicité</span></div>
+  </div>
+</div>
+
+<section class="enveloppe">
+  <div class="titre">
+    <h2>Tout ce qu'on cherche pendant le culte</h2>
+    <p>Un verset qu'on ne retrouve plus, un cantique annoncé à l'instant, un accord à transposer :
+       l'application répond sans faire attendre.</p>
   </div>
 
-  <h2>Ce qu'elle contient</h2>
-  <ul>
-    <li>La Bible en quatre versions, avec comparaison de deux versions côte à côte</li>
-    <li>Recherche rapide par référence, et recherche par les mots dont on se souvient</li>
-    <li>Fihirana Jesosy Mamonjy, FFPM, Tononkira, Noely 2024-2025-2026</li>
-    <li>Grille d'accords, transposition, métronome et accompagnement au piano</li>
-    <li>Partage des enregistrements d'un téléphone à l'autre, par wifi, sans internet</li>
-    <li>Suivi de lecture, versets enregistrés, notes et plan de lecture</li>
-  </ul>
+  <div class="grille">
+    <div class="carte">
+      <div class="rond"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 016.5 3H11v18H6.5A2.5 2.5 0 014 18.5zM20 5.5A2.5 2.5 0 0017.5 3H13v18h4.5a2.5 2.5 0 002.5-2.5z"/></svg></div>
+      <h3>Quatre versions</h3>
+      <p>Lisez-en une, ou deux côte à côte pour comparer une traduction à l'autre, verset par verset.</p>
+    </div>
+    <div class="carte">
+      <div class="rond"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></div>
+      <h3>Retrouver un verset</h3>
+      <p>Par la référence quand on la connaît, par les quelques mots dont on se souvient quand elle
+         nous échappe.</p>
+    </div>
+    <div class="carte">
+      <div class="rond"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg></div>
+      <h3>Le Fihirana entier</h3>
+      <p>Jesosy Mamonjy, FFPM, Tononkira et les recueils de Noël, avec les enregistrements qu'on
+         ajoute soi-même.</p>
+    </div>
+    <div class="carte">
+      <div class="rond"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a4 4 0 014 4v1a4 4 0 01-1 2.6 4 4 0 011 2.6v1a4 4 0 01-8 0v-1a4 4 0 011-2.6A4 4 0 018 8V7a4 4 0 014-4z"/><path d="M12 17v4"/></svg></div>
+      <h3>Pour les musiciens</h3>
+      <p>Grille d'accords, transposition en un geste, métronome et accompagnement au piano.</p>
+    </div>
+    <div class="carte">
+      <div class="rond"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12a7 7 0 0114 0"/><path d="M2 12a10 10 0 0120 0"/><circle cx="12" cy="18" r="2.5"/></svg></div>
+      <h3>Entre amis, sans internet</h3>
+      <p>Passez vos enregistrements d'un téléphone à l'autre par le wifi, sans forfait et sans
+         serveur.</p>
+    </div>
+    <div class="carte">
+      <div class="rond"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"/><path d="M6 20v-6"/><path d="M18 20V4"/></svg></div>
+      <h3>Le fil de vos lectures</h3>
+      <p>Versets enregistrés, notes, plan de lecture et la série de jours qui donne envie de
+         continuer.</p>
+    </div>
+  </div>
+</section>
 
-  <h2>Signaler un problème</h2>
-  <p>Cette version est à l'essai. Si quelque chose ne va pas, écrivez-nous en disant ce que
-     vous faisiez : <a href="mailto:yasharelyse@gmail.com">yasharelyse@gmail.com</a></p>
+<section class="enveloppe">
+  <div class="duo">
+    <div>
+      <h2>Deux versions sous les yeux</h2>
+      <p>Un mot qui surprend dans la traduction malgache, une tournure plus claire ailleurs :
+         affichez deux versions l'une à côté de l'autre et la comparaison se fait d'un regard,
+         sans quitter le chapitre.</p>
+      <ul>
+        <li>Les quatre versions sont dans l'application, rien à télécharger</li>
+        <li>L'audio suit la lecture quand l'enregistrement existe</li>
+        <li>Notes et surlignages restent attachés au verset</li>
+      </ul>
+    </div>
+    <img src="captures/06-comparaison.webp" alt="Deux versions de la Bible affichées côte à côte" loading="lazy" width="369" height="820">
+  </div>
+</section>
 
-  <footer>
-    <a href="confidentialite.html">Politique de confidentialité</a> ·
-    <a href="conditions.html">Conditions d'utilisation</a>
-  </footer>
-</main>
+<section class="enveloppe">
+  <div class="duo inverse">
+    <div>
+      <h2>Les accords, à la bonne hauteur</h2>
+      <p>Écrivez la suite d'accords une fois, transposez-la pour la voix du jour, et laissez le
+         piano donner le ton pendant la répétition. Les accords de passage tiennent dans la
+         mesure, les m7 et les diminués s'écrivent comme on les note sur le papier.</p>
+      <ul>
+        <li>Transposition immédiate, en dièses ou en bémols</li>
+        <li>Métronome et accompagnement au piano</li>
+        <li>Partage des suites d'accords entre musiciens</li>
+      </ul>
+    </div>
+    <img src="captures/09-accords.webp" alt="La grille d'accords d'un cantique" loading="lazy" width="369" height="820">
+  </div>
+</section>
 
-<script>
-  // Le lien de telechargement se deduit de l'adresse de la page : sur GitHub Pages,
-  // « nom.github.io/layfaniloko » correspond au depot « nom/layfaniloko ».
-  (function () {
-    var lien = document.getElementById('telecharger');
-    var nom = location.hostname.split('.')[0];
-    var depot = location.pathname.split('/')[1] || 'layfaniloko';
-    if (location.hostname.indexOf('github.io') > 0) {
-      lien.href = 'https://github.com/' + nom + '/' + depot + '/releases/latest';
-    } else {
-      lien.textContent = 'Lien de téléchargement bientôt disponible';
-    }
-  })();
-</script>
+<section>
+  <div class="enveloppe titre">
+    <h2>L'application en images</h2>
+    <p>En clair comme en sombre, selon le réglage du téléphone.</p>
+  </div>
+  <div class="galerie">
+    <img src="captures/01-accueil.webp" alt="L'accueil" loading="lazy" width="369" height="820">
+    <img src="captures/05-bible.webp" alt="La lecture d'un chapitre" loading="lazy" width="369" height="820">
+    <img src="captures/06-comparaison.webp" alt="La comparaison de deux versions" loading="lazy" width="369" height="820">
+    <img src="captures/04-hira.webp" alt="Les cantiques" loading="lazy" width="369" height="820">
+    <img src="captures/09-accords.webp" alt="Les accords" loading="lazy" width="369" height="820">
+    <img src="captures/07-ia.webp" alt="La discussion assistée" loading="lazy" width="369" height="820">
+    <img src="captures/03-amis-partage.webp" alt="Le partage entre amis" loading="lazy" width="369" height="820">
+    <img src="captures/11-sombre-accueil.webp" alt="L'accueil en mode sombre" loading="lazy" width="369" height="820">
+  </div>
+</section>
+
+<section class="enveloppe">
+  <div class="titre">
+    <h2>L'installer prend une minute</h2>
+    <p>L'application ne vient pas encore du Play Store : Android demandera une autorisation, une
+       seule fois.</p>
+  </div>
+  <ol class="etapes">
+    <li><strong>Télécharger</strong><span>Appuyez sur le bouton, puis ouvrez le fichier une fois descendu.</span></li>
+    <li><strong>Autoriser</strong><span>Android demande la permission d'installer depuis cette source : acceptez.</span></li>
+    <li><strong>Ouvrir</strong><span>La Baiboly et les cantiques sont déjà dedans. Rien d'autre à télécharger.</span></li>
+  </ol>
+  <p class="avis"><strong>À savoir.</strong> Quand l'application arrivera sur le Play Store, il
+     faudra désinstaller celle-ci d'abord : les deux ne portent pas la même signature. Vos cantiques
+     et vos enregistrements restent sur le téléphone, mais vos notes et votre progression seront
+     effacées — c'est une version d'essai.</p>
+</section>
+
+<section class="final enveloppe">
+  <h2>Tongasoa</h2>
+  <p>L'application prévient d'elle-même quand une version plus récente paraît.</p>
+  <a class="bouton" href="https://github.com/MrElyse/LayFaniloko/releases/latest/download/LayFaniloko.apk">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 19h16"/>
+    </svg>
+    Télécharger pour Android
+  </a>
+</section>
+
+<footer>
+  <div class="enveloppe">
+    <span>'Lay faniloko — Fiangonan'i Jesosy Mamonjy</span>
+    <span>
+      <a href="confidentialite.html">Confidentialité</a> ·
+      <a href="conditions.html">Conditions</a> ·
+      <a href="https://github.com/MrElyse/LayFaniloko">Le dépôt</a> ·
+      <a href="mailto:yasharelyse@gmail.com">Écrire</a>
+    </span>
+  </div>
+</footer>
+
 </body>
 </html>
