@@ -20,6 +20,7 @@ déjà dedans.
 - **La Baiboly en quatre versions**, avec la comparaison de deux versions côte à côte
 - **Recherche** rapide par référence, et par les mots dont on se souvient quand la référence échappe
 - **Fihirana** Jesosy Mamonjy, FFPM, Tononkira, Noely 2024 · 2025 · 2026
+- **Vos mp3 sur les cantiques** : l'application range et renomme le fichier elle-même, l'enregistrement se lance avec les paroles
 - **Pour les musiciens** : grille d'accords, transposition, métronome, accompagnement au piano
 - **Partage entre téléphones** : passer ses enregistrements par wifi, sans internet, d'un téléphone
   à l'autre
