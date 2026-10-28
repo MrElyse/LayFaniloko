@@ -1,6 +1,6 @@
 # 'Lay faniloko
 
-> « 'Lay faniloko ho an'ny tongotro ny teninao, sady fanazavana ho amin'ny lalako. » — Salamo 119:105
+> « Fanilon'ny tongotro sy fanazavana ny lalako ny teninao. » — Salamo 119:105
 
 Application Android pour l'église **Fiangonan'i Jesosy Mamonjy** : la Baiboly, le Fihirana et
 l'enseignement, dans un seul téléphone. Gratuite, sans publicité, et sans internet pour lire.
